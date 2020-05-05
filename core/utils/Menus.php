@@ -9,14 +9,39 @@
 */
 
 class Menus extends Helpers {
+
     public $menu;
+
+    public function __construct() {
+        $this->Sessions = new Sessions();
+    }
 
     public function submenu() {
         $object = $this->load_data('submenu');
         $this->menu = '<nav class="navigation"><ul>';
+        if($this->Sessions->isLogged()){
+            $role = $this->Sessions->read('User')->role;
+        }else{
+            $role = "visitor";
+        }
         if(isset($object)){
             foreach ($object as $item) {
-                $this->menu .= '<li>'.Router::url($item['name'], [$item['module'], $item['action']]).'</li>';
+                /* Liens visiteurs */
+                if($item['access'] === "visitor" && $role === "visitor"){
+                    $this->menu .= '<li>'.Router::url($item['name'], [$item['module'], $item['action']]).'</li>';
+                }
+                /* Liens users */
+                elseif($item['access'] === "user" || $item['access'] === "visitor"){
+                    if($role === "user" || $role == "admin"){
+                        $this->menu .= '<li>'.Router::url($item['name'], [$item['module'], $item['action']]).'</li>';
+                    }
+                }
+                /* Liens admin */
+                elseif($item['access'] === "user" || $item['access'] === "visitor" || $item['access'] === "admin"){
+                    if($role === "admin"){
+                        $this->menu .= '<li>'.Router::url($item['name'], [$item['module'], $item['action']]).'</li>';
+                    }
+                }
             }
             $this->menu .= '</ul></nav>';
         }

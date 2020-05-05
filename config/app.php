@@ -24,6 +24,8 @@ class ConfigApp {
         "assets" => "assets",
     ];
 
+    static $admin_module_name = "temple";
+
     /*
         Permet de choisir les helpers à inclure (contenu du dossier utils)
     */

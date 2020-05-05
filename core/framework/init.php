@@ -23,6 +23,7 @@ class Init {
         require ROOT.'/core/framework/Router.php';
         require ROOT.'/core/framework/Helpers.php';
         require ROOT.'/core/framework/Controller.php';
+        require ROOT.'/core/framework/AdminController.php';
         require ROOT.'/core/framework/Model.php';
         require ROOT.'/core/framework/Secure.php';
     }
@@ -53,13 +54,22 @@ class Init {
 
     public function load_module() {
         /*
+            On vérifie si le mot clé 'Admin' débute le nom du fichier. Si c'est le cas alors on charge le controller.
+
             On vérifie que le fichier existe bien (NomController.php) dans le dossier "controller" du module.
             Si il existe, alors on l'inclus et on créer une nouvelle instance de classe.
             Et enfin, on charge l'action défini par $this->request->action. Si celle-ci n'existe pas, on en
             charge une par défaut.
         */
+
         $name = ucfirst($this->request->module).'Controller';
+
+        if($this->request->action == ConfigApp::$admin_module_name) {
+            $name = "Admin".$name;
+        }
+
         $module_file = ROOT.'/'.ConfigApp::$config_dir['modules'].'/'.$this->request->module.'/controllers/'.$name.'.php';
+
 
         if(!file_exists($module_file)){
             Errors::controller($module_file);

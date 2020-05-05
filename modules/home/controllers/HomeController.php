@@ -5,7 +5,6 @@ class HomeController extends Controller {
         /*
             On charge le model
         */
-
         $edito = $this->loadModel('home');
         $this->set([
             "test" => "azertyuiop",
@@ -14,16 +13,5 @@ class HomeController extends Controller {
             "edito" => $edito->get(),
         ]);
         $this->render('lol');
-    }
-
-    public function edit_edito(){
-        $edito = $this->loadModel('Home');
-
-        if($edito->validate($this->request->data)){
-            $edito->save($this->request->data);
-            $this->redirect(["home", "index"]);
-        }
-        $this->request->data = $edito->get();
-        $this->render();
     }
 }

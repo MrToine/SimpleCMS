@@ -1,12 +1,12 @@
 <?php
-/*#################################################################################################################
-#                                                                                                                 #
-# Author : VIOLET Anthony                                                                                         #
-# Created : `Date.today.strftime('%D')`                                                                           #
-# Updated : `Date.today.strftime('%D')`                                                                           #
-# Licence : General Public License (GPL)                                                                          #
-#                                                                                                                 #
-#################################################################################################################*/
+/**
+ * @license     https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL-3.0
+ * @author      Anthony VIOLET
+ * @version     SimpleFM 1.0 - 02/05/2020
+ * @since       SimpleFM 1.1 - 05/05/2020
+ * @contributor
+ * @page        Gestion des Sessions
+*/
 class Sessions {
 
     function __construct() {

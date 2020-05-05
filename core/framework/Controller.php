@@ -28,7 +28,7 @@ class Controller {
 
     public function render($view = null, $data = []) {
         /*
-            On vérifie que le dossier view existe, pui le fichier (par defaut => nom_action.php). Si c'est le cas, on
+            On vérifie que le dossier view existe, puis le fichier (par defaut => nom_action.php). Si c'est le cas, on
             s'occupe d'afficher la vue.
         */
         if(!file_exists(ROOT.'/modules/'.Router::request()->module.'/views/')) {
@@ -40,8 +40,11 @@ class Controller {
             }
             $this->request->view = $view;
         }else{
-            if(!file_exists(ROOT.'/modules/'.Router::request()->module.'/views/'.Router::request()->action.'.php')){
-                Errors::file(ROOT.'/modules/'.Router::request()->module.'/views/'.Router::request()->action.'.php');
+            if($this->request->uri['a'] == ConfigApp::$admin_module_name) {
+                $this->request->action = 'Admin'.ucfirst($this->request->action);
+            }
+            if(!file_exists(ROOT.'/modules/'.Router::request()->module.'/views/'.$this->request->action.'.php')){
+                Errors::file(ROOT.'/modules/'.Router::request()->module.'/views/'.$this->request->action.'.php');
             }else{
                 $this->request->view = Router::request()->action;
             }

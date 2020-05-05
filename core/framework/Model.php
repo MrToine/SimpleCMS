@@ -37,6 +37,11 @@ class Model {
         return fclose($file);
     }
 
+    public function count() {
+        debug($this->data);
+        debug(count($this->data));
+    }
+
     public function find($params = []){
         /*
             On commence par convertir les objets en array.
