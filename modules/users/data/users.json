@@ -1,0 +1,9 @@
+{
+    "1":{
+        "id": "1",
+        "username": "Toine",
+        "password": "test",
+        "created": "04/05/2020",
+        "role": "admin"
+    }
+}
