@@ -85,7 +85,9 @@ class Model {
                 }
             }
         }
-        return $this->data;
+        $this->data = (array)$this->data;
+        arsort($this->data);
+        return (object)$this->data;
     }
 
     public function get_last(){
@@ -110,7 +112,6 @@ class Model {
         }
         $new_file = (object) $new_file;
         $file = $this->openfile('w+');
-
         if($this->type === "json") {
             $this->create_json_file($new_file);
             fwrite($file, $this->create_json_file($new_file));

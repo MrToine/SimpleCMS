@@ -13,6 +13,13 @@ class AdminPagesController extends AdminController {
                 $this->create();
                 $this->render('AdminCreate');
                 break;
+            case 'edit':
+                $this->edit();
+                $this->render('AdminCreate');
+                break;
+            case "delete":
+                $this->delete();
+                break;
             default:
                 $this->list();
                 $this->render('AdminList');
@@ -44,5 +51,31 @@ class AdminPagesController extends AdminController {
         $this->set([
             "id" => $id
         ]);
+    }
+
+    public function edit() {
+        $model = $this->loadModel('Pages');
+        if(empty($this->request->params["id"])) {
+            $this->Sessions->set_flash('Le lien séléctionner n\'existes pas.', 'warning');
+        }
+        $data = $model->get(["id" => $this->request->params["id"]]);
+
+        if($model->validate($this->request->data)){
+            $model->save($this->request->data);
+            $this->redirect(["pages", "temple"]);
+        }
+        $this->request->data = $data;
+        $this->set([
+            "post" => $data,
+        ]);
+    }
+
+    private function delete() {
+        if(empty($this->request->params["id"])) {
+            $this->Sessions->set_flash('Le lien séléctionner n\'existes pas.', 'warning');
+        }
+        debug($this->request->params);
+        $this->loadModel('Pages')->delete($this->request->params["id"]);
+        $this->redirect(["pages", "temple"], 301);
     }
 }

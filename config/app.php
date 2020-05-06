@@ -30,4 +30,6 @@ class ConfigApp {
         Permet de choisir les helpers à inclure (contenu du dossier utils)
     */
     static $helpers = ["Form", "Menus"];
+
+    static $author = "Auteur";
 }
