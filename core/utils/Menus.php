@@ -26,7 +26,33 @@ class Menus extends Helpers {
         }
         if(isset($object)){
             foreach ($object as $item) {
-                /* Liens visiteurs */
+                /*
+                    On gère d'aboir a l'aide d'un preg_match si le menu est de type "double" (Connexion;Deconnexion - users;users - login;logout)
+                */
+                if(preg_match('/;/', $item['name'])) {
+                    $item['name'] = explode(';', $item['name']);
+                    if(!$this->Sessions->isLogged()){
+                        $item['name'] = $item['name'][0];
+                    }else{
+                        $item['name'] =$item['name'][1];
+                    }
+                }
+                if(preg_match('/;/', $item['module'])) {
+                    $item['module'] = explode(';', $item['module']);
+                    if(!$this->Sessions->isLogged()){
+                        $item['module'] = $item['module'][0];
+                    }else{
+                        $item['module'] =$item['module'][1];
+                    }
+                }
+                if(preg_match('/;/', $item['action'])) {
+                    $item['action'] = explode(';', $item['action']);
+                    if(!$this->Sessions->isLogged()){
+                        $item['action'] = $item['action'][0];
+                    }else{
+                        $item['action'] =$item['action'][1];
+                    }
+                }
                 if($item['access'] === "visitor" && $role === "visitor"){
                     $this->menu .= '<li>'.Router::url($item['name'], [$item['module'], $item['action']]).'</li>';
                 }

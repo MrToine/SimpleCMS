@@ -1,4 +1,24 @@
 <h1>Gestion des Menus</h1>
+<div class="alert--info">
+<p class="fl padding-10"><i class="fas fa-info" style="font-size:16pt;color:blue;"></i></p>
+<p>Pour définir des liens différents si l'utilisateur est connecté ou déconnecté, vous pouvez utiliser un point virgule pour séparer les actions. Le lien dois être accessible <strong>à tout le monde</strong> pour que cela fonctionne.</p>
+<p>Exemple: </p>
+<table class="table">
+    <thead>
+        <th>Affichage</th>
+        <th>Module pointer</th>
+        <th>Action pointer</th>
+        <th>Autorisation</th>
+    </thead>
+    <tr>
+        <td>Connexion;Déconnexion</td>
+        <td>users;users</td>
+        <td>login;logout</td>
+        <td><strong>Toue le monde</strong></td>
+    </tr>
+</table>
+<p>Lorsque le nom du module, de l'action, ou d'affichage est le même, il n'est pas nécéssaire de mettre deux fois la même chose.</p>
+</div>
 <h3>Submenu</h3>
     <table class="table">
         <thead>

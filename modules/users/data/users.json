@@ -2,17 +2,9 @@
     "1":{
         "id": "1",
         "username": "Toine",
-        "password": "72bc598f8e0e3e6c8f4e49f46020575798727e03a94a8fe5ccb19ba61c4c0873d391e987982fbbd3",
+        "password": "72bc598f8e0e3e6c8f4e49f46020575798727e0381f8886760b264419ef36bc5e347c7c2160a12fe",
         "created": "04/05/2020",
         "role": "admin",
-        "token": ""
-    },
-    "2":{
-        "id": "2",
-        "username": "test",
-        "password": "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3a94a8fe5ccb19ba61c4c0873d391e987982fbbd3",
-        "created": "04/05/2020",
-        "role": "user",
-        "token": "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3c4033bff94b567a190e33faa551f411caef444f2"
+        "token": "72bc598f8e0e3e6c8f4e49f46020575798727e0381f8886760b264419ef36bc5e347c7c2160a12fe"
     }
 }
