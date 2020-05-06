@@ -14,15 +14,22 @@ p {
     background-color: #212529;
     color: #e7e9ed;
 }
+.light-color {
+    background-color: #D8E3E3;
+}
 .main-page {
     margin: 15px;
     color: #5F553D;
+    border-left: 1px solid #212529;
+    border-right: 1px solid #212529;
 }
 .header {
-    background-image: url('../img/website/banner.png');
+    font-family: Play;
+    color: #4c96d7;
+    background-image: url('../images/logo.png');
     width: 100%;
-    height: 250px;
-    border-bottom: 1px solid grey;
+    height: 200px;
+    background-repeat:no-repeat;
 }
 
 /* Menu */
@@ -52,11 +59,24 @@ p {
       padding: 0;
       list-style: none;
 }
-.navigation li {
-      display: inline-block;
-      padding: 1rem;
+.navigation li a:hover {
+    display: block;
+    background-color:#FFF;
+    color: #306A74;
+    text-decoration: none;
 }
-
+.navigation li a {
+    display:block;
+    float:left;
+    width:150px;
+    text-align:center;
+    padding:5px;
+    height:50px;
+    font-weight: bold;
+    border-left: 1px solid #89ABB0;
+    vertical-align: center;
+    /*pour avoir un effet "outset" avec IE :*/
+}
 @media (max-width: 320px) {
     .navigation li {
         display: block;

@@ -3,20 +3,31 @@
     <head>
         <meta charset="utf-8">
         <title>SimpleCMS</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://rawgit.com/alsacreations/KNACSS/master/css/knacss-unminified.css" media="all">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Play" media="all">
         <script src="https://kit.fontawesome.com/5ed09ba53b.js" crossorigin="anonymous"></script>
         <?php Router::css(['editor.min', 'trumbowyg.colors.min','trumbowyg.emoji.min','generic']); ?>
     </head>
     <body class="gray-900">
         <section>
-            <section class="grid-6 has-gutter sand-color">
+            <section class="grid-6 has-gutter light-color">
                 <div></div>
-                <div class="col-4 sand-lite-color bordered-grey">
-                    <div class="header"></div>
-                    <div class="subheader">
+                <div class="col-4">
+                    <div class="header">
+                        <p style="font-size:36pt;padding-left:170px;padding-top:50px;">SimpleCMS</p>
+                        <p style="font-size:18pt;padding-left:200px;padding-top:-5px;color:#444545;"><i>Le Petit qui fait comme les Grands</i></p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="subheader sand-color">
                         <?= $this->Menus->submenu(); ?>
                     </div>
-                    <div class="main-page">
+                </div>
+                <div></div>
+                <div></div>
+                <div class="col-4">
+                    <div class="main-page padding-10">
                         <?= $this->Sessions->flash(); ?>
                         <?= $output; ?>
                     </div>
