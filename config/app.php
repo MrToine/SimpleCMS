@@ -12,7 +12,6 @@ class ConfigApp {
 
     static $debug = true; // Mettez a false pour passer en production
 
-    static $module_default = "home";
 
     static $config_dir = [
         /*
@@ -21,8 +20,10 @@ class ConfigApp {
             Il est aussi nécéssaire que les dossiers se trouve à la racine du siteweb.
         */
         "modules" => "modules",
-        "assets" => "assets",
+        "assets" => "themes",
     ];
+
+    static $module_default = "home";
 
     static $admin_module_name = "temple";
 

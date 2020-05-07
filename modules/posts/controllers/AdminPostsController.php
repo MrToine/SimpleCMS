@@ -19,6 +19,13 @@ class AdminPostsController extends AdminController {
             case "delete":
                 $this->delete();
                 break;
+            case "comments":
+                $this->listcomments();
+                $this->render('AdminListComments');
+                break;
+            case "commentdelete":
+                $this->commentdelete();
+                break;
             default:
                 $this->list();
                 $this->render('AdminList');
@@ -79,5 +86,21 @@ class AdminPostsController extends AdminController {
         debug($this->request->params);
         $this->loadModel('Posts')->delete($this->request->params["id"]);
         $this->redirect(["posts", "temple"], 301);
+    }
+
+    private function listcomments(){
+        $model = $this->loadModel('Comments');
+        $this->set([
+            "comments" => $model->get()
+        ]);
+    }
+
+    private function commentdelete() {
+        if(empty($this->request->params["id"])) {
+            $this->Sessions->set_flash('Le lien séléctionner n\'existes pas.', 'warning');
+        }
+        debug($this->request->params);
+        $this->loadModel('Comments')->delete($this->request->params["id"]);
+        $this->redirect(["posts", "temple&admin=comments"], 301);
     }
 }

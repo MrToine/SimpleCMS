@@ -3,7 +3,7 @@
  * @license     https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL-3.0
  * @author      Anthony VIOLET
  * @version     SimpleFM 1.0 - 02/05/2020
- * @since       SimpleFM 1.1 - 02/05/2020
+ * @since       SimpleFM 1.1 - 07/05/2020
  * @contributor
  * @page        Utilitaire qui gère les formulaires
 */
@@ -11,15 +11,27 @@
 class Form extends Helpers {
 
     public function input($name, $label, $options=array()){
+        $html = '';
         if(!isset($this->controller->request->data->$name)) {
             $value = "";
         }else{
             $value = $this->controller->request->data->$name;
         }
         if($label == "hidden") {
-            return '<input type="hidden" name="'.$name.'" value="'.$value.'">';
+            if($name == "antispam"){
+                $label = "";
+                $nobot = time().'_'.rand(50000, 60000);
+
+                $html .= '<input type="checkbox" name="nobotc" value="'.sha1($nobot).'"> Je confirme être un humain';
+                $html .= '<input type="hidden" name="try" value="send"><input type="hidden" name="nobotv" value="'.$nobot.'"><input type="hidden" name="'.$name.'" value="'.sha1($nobot).'">';
+                $html .= '<div style="position: absolute; visibility: hidden; left: -5000; top : -5000">
+		<br><input type="checkbox" name="nobots" value="'.time().'" />I\'m a Stupid Spam-Robot
+	</div>';
+            }else{
+                $html .= '<input type="hidden" name="'.$name.'" value="'.$value.'">';
+            }
         }
-        $html = '<p><label for="input'.$name.'">'.$label.'</label><p>';
+        $html .= '<p><label for="input'.$name.'">'.$label.'</label><p>';
         $attr = ' ';
         foreach ($options as $key => $v) {
             if($key != 'type'){

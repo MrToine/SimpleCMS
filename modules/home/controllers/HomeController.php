@@ -10,7 +10,7 @@ class HomeController extends Controller {
             "test" => "azertyuiop",
             "cracra" => "je suis au courant",
             "id" => 154,
-            "edito" => $edito->get(),
+            "edito" => $edito->get(["name" => "edito"])
         ]);
         $this->render('lol');
     }

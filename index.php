@@ -10,6 +10,9 @@ define('ROOT', dirname(__FILE__));
 define('BASE_URL', dirname($_SERVER['SCRIPT_NAME']));
 
 require ROOT.'/core/framework/init.php';
+if(!file_exists('config/app.php')){
+    header('Location: install.php');
+}
 $core = new Init();
 $core->load_core();
 ?>

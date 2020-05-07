@@ -3,7 +3,7 @@
  * @license     https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL-3.0
  * @author      Anthony VIOLET
  * @version     SimpleFM 1.0 - 02/05/2020
- * @since       SimpleFM 1.1 - 05/05/2020
+ * @since       SimpleFM 1.1 - 07/05/2020
  * @contributor
  * @page        Gestion des interaction avec les données.
 */
@@ -37,9 +37,10 @@ class Model {
         return fclose($file);
     }
 
-    public function count() {
-        debug($this->data);
-        debug(count($this->data));
+    public function get_count($params = []) {
+        $data = $this->get($params);
+        $data = (array)$data;
+        debug(count($data));
     }
 
     public function find($params = []){
@@ -90,6 +91,29 @@ class Model {
         return (object)$this->data;
     }
 
+    public function get_list($params = []){
+        /*
+            Permet de récupérer les données. Si des paramèetres sont passé on récupère en fonctions de ces derniers.
+            On liste les paramètres. Ensuite on liste les données et on vérifie l'égalité avec les paramètres.
+        */
+        $data = [];
+        if($params) {
+            foreach($params as $key => $value) {
+                foreach($this->data as $v) {
+                    if($v->$key == $value) {
+                        $data[] = $v;
+                    }
+                }
+            }
+        }else{
+            $data = $this->data;
+        }
+
+        $this->data = (array)$data;
+        arsort($this->data);
+        return (object)$this->data;
+    }
+
     public function get_last(){
         return end($this->data);
     }
@@ -125,7 +149,6 @@ class Model {
         $data = $this->get(["id" => $key]);
         unset($new_file[$key]);
         $new_file = (object)$new_file;
-        debug($new_file);
         $file = $this->openfile('w+');
         fwrite($file, $this->create_json_file($new_file));
         $this->closefile($file);
@@ -135,10 +158,21 @@ class Model {
         /*
         *   Si $validate = false, alors on ne chercher pas a vérifier les règles de validation
         */
+        $try=(isset($_GET['try'])?$_GET['try']:(isset($_POST['try'])?$_POST['try']:''));
+        $nobotv=(isset($_GET['nobotv'])?$_GET['nobotv']:(isset($_POST['nobotv'])?$_POST['nobotv']:''));
+        $nobotc=(isset($_GET['nobotc'])?$_GET['nobotc']:(isset($_POST['nobotc'])?$_POST['nobotc']:''));
+        $nobots=(isset($_GET['nobots'])?$_GET['nobots']:(isset($_POST['nobots'])?$_POST['nobots']:''));
+
         $errors = array();
         $reg_expression = "";
         if(!$_POST){
             return false;
+        }
+
+        if($_POST['try'] === 'send'){
+            if(($nobotc != sha1($nobotv)) || ($nobotv == "") || ($nobots != "")) {
+                $errors['Antispam'] = "Vous n'avez pas coché la case anti-spam.";
+            }
         }
         if($validate){
             foreach ($this->validate as $key => $value) {

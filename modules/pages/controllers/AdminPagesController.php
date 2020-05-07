@@ -30,7 +30,7 @@ class AdminPagesController extends AdminController {
     private function list(){
         $model = $this->loadModel('Pages');
         $this->set([
-            "pages" => $model->get()
+            "pages" => $model->get_list()
         ]);
     }
 
@@ -58,7 +58,7 @@ class AdminPagesController extends AdminController {
         if(empty($this->request->params["id"])) {
             $this->Sessions->set_flash('Le lien séléctionner n\'existes pas.', 'warning');
         }
-        $data = $model->get(["id" => $this->request->params["id"]]);
+        $data = $model->get_list(["id" => $this->request->params["id"]]);
 
         if($model->validate($this->request->data)){
             $model->save($this->request->data);
