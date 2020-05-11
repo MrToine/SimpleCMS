@@ -58,15 +58,14 @@ class AdminPagesController extends AdminController {
         if(empty($this->request->params["id"])) {
             $this->Sessions->set_flash('Le lien séléctionner n\'existes pas.', 'warning');
         }
-        $data = $model->get_list(["id" => $this->request->params["id"]]);
-
+        $data = $model->get(["id" => $this->request->params["id"]]);
         if($model->validate($this->request->data)){
             $model->save($this->request->data);
-            $this->redirect(["pages", "temple"]);
+            $this->redirect(["posts", "temple"]);
         }
         $this->request->data = $data;
         $this->set([
-            "post" => $data,
+            "page" => $data,
         ]);
     }
 
