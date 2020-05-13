@@ -7,5 +7,5 @@
             "id" => $post->id,
         ]
     ); ?></p>
-    <p class="fr"><small>Par <?= $post->author ?> le <?= $post->created ?> &times; <?= $post->comments ?> commentaire(s)</small></p>
+    <p class="fr"><small>Par <?= $post->author ?> le <?= $post->created ?></small></p>
 <?php endforeach; ?>

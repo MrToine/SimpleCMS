@@ -17,10 +17,12 @@ class Controller {
 
     public function __construct($request) {
         /* Chargement des helpers */
-        foreach (ConfigApp::$helpers as $value) {
-            $value = ucfirst($value);
-            require ROOT.'/core/utils/'.$value.'.php';
-            $this->$value = new $value($this);
+        if(file_exists(ROOT.'/config/app.php')){
+            foreach (ConfigApp::$helpers as $value) {
+                $value = ucfirst($value);
+                require ROOT.'/core/utils/'.$value.'.php';
+                $this->$value = new $value($this);
+            }
         }
         $this->Sessions = new Sessions();
         $this->request = $request;
@@ -40,7 +42,7 @@ class Controller {
             }
             $this->request->view = $view;
         }else{
-            if($this->request->uri['a'] == ConfigApp::$admin_module_name) {
+            if($this->request->uri['a'] && $this->request->uri['a'] == ConfigApp::$admin_module_name) {
                 $this->request->action = 'Admin'.ucfirst($this->request->action);
             }
             if(!file_exists(ROOT.'/modules/'.Router::request()->module.'/views/'.$this->request->action.'.php')){
