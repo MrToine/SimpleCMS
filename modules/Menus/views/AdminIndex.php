@@ -37,7 +37,7 @@
                     <td><input type="text" name="module" value="<?= $item->module ?>"></td>
                     <td><input type="text" name="action" value="<?= $item->action ?>"></td>
                     <td>
-                        <button value="" type="submit" class="btn--info"><i class="fas fa-check"></i></button><?= Router::url('<i class="fas fa-eye"></i>', [$item->module, $item->action], ["class" => "btn--success"]) ?><?= Router::url('<i class="fas fa-trash-alt"></i>', ['menus', 'temple'], ["admin" => "delete", "id" => $item->id, "class" => "btn--danger"]) ?>
+                        <button value="" type="submit" class="btn--info"><i class="fas fa-check"></i></button><?= Router::url('<i class="fas fa-eye"></i>', [$item->module, $item->action], ["class" => "btn--success"]) ?><?= Router::url('<i class="fas fa-trash-alt"></i>', ['menus', ConfigApp::$admin_module_name], ["admin" => "delete", "id" => $item->id, "class" => "btn--danger"]) ?>
                         <select name="access">
                             <option selected="selected" value="<?= $item->access ?>"><?= $item->access ?></option>
                             <option value="visitor">Tout le monde</option>

@@ -46,6 +46,10 @@ class Router {
         foreach($params as $key => $value) {
             if($key === "class"){
                 $link .= '" '.$key.'="'.$value;
+            }elseif($key === "style"){
+                $link .= '" '.$key.'="'.$value;
+            }elseif($key === "onclick"){
+                $link .= '" '.$key.'="'.$value;
             }else{
                 $link .= '&'.$key.'='.$value;
             }

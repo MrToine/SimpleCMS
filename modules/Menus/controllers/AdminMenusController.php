@@ -38,8 +38,8 @@ class AdminMenusController extends AdminController {
         if(empty($this->request->params["id"])) {
             $this->Sessions->set_flash('Le lien séléctionner n\'existes pas.', 'warning');
         }
-        debug($this->request->params);
+
         $this->loadModel('Menus', '/core/data/submenu')->delete($this->request->params["id"]);
-        $this->redirect(["menus", "temple"], 301);
+        $this->redirect(["menus", ConfigApp::$admin_module_name], 301);
     }
 }
