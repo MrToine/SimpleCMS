@@ -4,10 +4,9 @@
         <meta charset="utf-8">
         <title>SimpleCMS</title>
         <link rel="icon" type="image/x-icon" href="/favicon.ico" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://rawgit.com/alsacreations/KNACSS/master/css/knacss-unminified.css" media="all">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Play" media="all">
         <script src="https://kit.fontawesome.com/5ed09ba53b.js" crossorigin="anonymous"></script>
-        <?php Router::css(['editor.min', 'trumbowyg.colors.min','trumbowyg.emoji.min','generic']); ?>
+        <?php Router::css(['KNACSS-mini.css', 'editor.min', 'trumbowyg.colors.min','trumbowyg.emoji.min','generic']); ?>
     </head>
     <body class="gray-900">
         <section>
